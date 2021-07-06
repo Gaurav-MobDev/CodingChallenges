@@ -1,0 +1,83 @@
+function findThePlot(arrayOfPlotSizes, wantToBuyPlotOfSize) {
+
+  let startingIndex = 0;
+  let lastIndex = 0;
+  let requiredArrayOfPlots = [];
+  for(let numOfPlots = 0 ; numOfPlots  < arrayOfPlotSizes.length ; numOfPlots++){
+    let subArrayOfPlots = [];
+      let sumOfAreaOfPlots = 0;
+         for(let subNumOfPlots = numOfPlots ; subNumOfPlots  < arrayOfPlotSizes.length ; subNumOfPlots++){
+       sumOfAreaOfPlots += arrayOfPlotSizes[subNumOfPlots];
+       subArrayOfPlots.push(arrayOfPlotSizes[subNumOfPlots]);
+            
+       if(sumOfAreaOfPlots === wantToBuyPlotOfSize){
+         requiredArrayOfPlots.push(subArrayOfPlots);
+         sumOfAreaOfPlots = 0;
+           console.log(subArrayOfPlots);
+         subNumOfPlots = arrayOfPlotSizes.length;
+       }
+  }
+  }
+      
+
+ let lengthsOfSubArrays = [];
+  let indexOfMin = 0;
+  for(let indexOfSubArrayOfPlots = 0 ; indexOfSubArrayOfPlots < requiredArrayOfPlots.length ;  indexOfSubArrayOfPlots++){
+     lengthsOfSubArrays.push(requiredArrayOfPlots[indexOfSubArrayOfPlots].length);
+     indexOfMin = lengthsOfSubArrays.indexOf(Math.min(...lengthsOfSubArrays));
+
+  }
+  console.log(requiredArrayOfPlots[indexOfMin])
+  return lengthsOfSubArrays[0];
+}
+
+findThePlot([2,1,4,1,3,2,1,1], 8);
+
+
+
+// Problem Statement->
+
+// Along one side of a road, there is a sequence of vacant plots of land. Each plot has its own area(non -zero). So, the areas form a sequence A[1], A[2], ... A[N].
+// You want to buy K acres of land to build a house. You want to find a segment of continuous plots whose sum is exactly K.
+
+// Notes:
+
+// 1. In case there are multiple segments with the same length then find out the shortest one.
+
+// 2. If there is more than 1 shortest segment with the same length then print the first one.
+
+// Input format
+
+// First line: N (Total number of plots) 
+// Next N lines: Areas of plots
+// Next 1 line: K (Area needed to build a house)
+// Output format
+
+// For each test case, print comma-separated values for resultant plots.
+
+// Constraints
+
+// 1≤𝑁≤103 
+
+// Sample Input
+
+// Sample Output
+
+// 11
+// 1
+// 3
+// 2
+// 1
+// 4
+// 1
+// 3
+// 2
+// 1
+// 1
+// 2
+// 8
+// 4,1,3
+// Explanation
+
+// There might be multiple sub-arrays with continuous numbers whose sum is exactly equal to k (8), like [2, 1, 4, 1], [4, 1, 3], and [1, 3, 2, 1, 1].
+But we need sub-array with the minimum length hence the correct answer is [4, 1, 3].
